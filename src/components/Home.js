@@ -4,10 +4,13 @@ import List from './List';
 
 class Home extends React.Component {
     render() {
+        const {data} = this.props;
         return (
             <main>
                 <Filter />
-                <List />
+                <List 
+                    data={data}
+                />
             </main>
 
         );

@@ -3,10 +3,12 @@ import Card from './Card';
 
 class List extends React.Component {
     render() {
+        const {data} = this.props;
         return (
             <section>
-                <p>esto es List</p>
-                <Card />
+                <Card
+                    data={data}
+                />
             </section>
         );
     }
