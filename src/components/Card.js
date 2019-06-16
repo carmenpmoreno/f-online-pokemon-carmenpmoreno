@@ -6,17 +6,20 @@ class Card extends React.Component {
         const { item } = this.props;
         return (
             <div className="card">
-                <img src={item.sprites.front_default} alt={item.name}></img>
-                <h3 className="itemUpperCasse">{`id/${item.id}`}</h3>
-                <h2 className="pokemonName">{item.name}</h2>
-                <ul>
-                    {item.types.map(type => {
-                        return (
-                            <li className="itemList itemUpperCasse" key={type.slot}>{type.type.name}</li>
-                        );
-                    }
-                    )}
-                </ul>
+                <img className="pokemonImage" src={item.sprites.front_default} alt={item.name}></img>
+                <h3 className="itemUpperCasse pokemonId">{`id/${item.id}`}</h3>
+                <div className="nameTypesWrapper">
+                    <h2 className="pokemonName">{item.name}</h2>
+                    <ul className="pokemonTypes">
+                        {item.types.map(type => {
+                            return (
+                                <li className="itemUpperCasse pokemonType" key={type.slot}>{type.type.name}</li>
+                            );
+                        }
+                        )}
+                    </ul>
+                </div>
+
             </div>
         );
     }

@@ -2,5 +2,44 @@
     border: 1px solid black;
     height: 200px;
     width: 150px;
-    padding: 15px;
+    background-color: #fff;
+    margin: 10px;
+    border: 0.5px solid rgb(197, 196, 196);
+    border-radius: 5px;
+}
+.pokemonImage {
+    padding: 15px 15px 0 15px;
+}
+.nameTypesWrapper {
+    background-color: lightgray;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: 0.5px solid lightgray;
+    border: 0.5px solid rgb(197, 196, 196);
+}
+.pokemonId {
+    padding-left: 15px;
+    margin: 5px;
+    text-align: initial;
+    font-size: 14px;
+    font-weight: 100;
+}
+.pokemonName {
+    padding-left: 15px;
+    margin-top: 0;
+    font-size: 18px;
+    margin-bottom: 0;
+    text-align: initial;
+}
+.pokemonTypes {
+    display: flex;
+    flex-direction: row;
+    padding-left: 5px;
+    list-style: none;
+}
+.pokemonType {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid lightgray;
+    font-size: 14px;
 }
