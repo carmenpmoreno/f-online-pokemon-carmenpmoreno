@@ -27,7 +27,7 @@ class App extends React.Component {
               return (
                 this.setState(prevState => {
                   return {
-                    data:[
+                    data: [
                       ...prevState.data,
                       pokemonData],
                     fetchOk: true,
@@ -43,7 +43,6 @@ class App extends React.Component {
 
   handleInputChange(event) {
     const { value } = event.target;
-    console.log(value);
     this.setState(prevState => {
       return {
         ...prevState,

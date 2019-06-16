@@ -7,8 +7,8 @@ class List extends React.Component {
     render() {
         const { data, inputValue, fetchOk } = this.props;
         return (
-            <ul>
-                {inputValue.length >= 3 & fetchOk
+            <ul className="pokemonList">
+                {inputValue.length >= 3 || inputValue === ""
                     ? (data
                         .filter(item => {
                             return (
@@ -25,7 +25,7 @@ class List extends React.Component {
                                 </li>
                             );
                         }))
-                    : (<p>¡Elige tu pokemon favorito!</p>)
+                    : (<p className="chooseParagraph">¡Sigue buscando!</p>)
 
                 }
             </ul>
