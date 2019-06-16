@@ -21,22 +21,28 @@ class App extends React.Component {
         console.log('data del fetch 1', data.results);
         // PARA HACER FETCH DE CADA URL QUE ME devuelve el array de objetos de data
         return data.results.map(item => {
-          return (
-            fetch(item.url)
-              .then(response => response.json())
-              .then(dataAllPokemon => {
-                console.log('data del fetch 2', dataAllPokemon);
-                this.setState({
-                  data: dataAllPokemon,
-                  fetchOk: true,
+          fetch(item.url)
+            .then(response => response.json())
+            .then(pokemonData => {
+              return (
+                this.setState(prevState => {
+                  return {
+                    data:[
+                      ...prevState.data,
+                      pokemonData],
+                    fetchOk: true,
+                  }
                 })
-              })
-          );
+              )
+
+            })
         });
       })
+
   }
   render() {
     const { data, fetchOk } = this.state;
+    // console.log('data en el estado', data);
     return (
       <div className="App">
         {fetchOk

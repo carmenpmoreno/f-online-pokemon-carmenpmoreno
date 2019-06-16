@@ -3,11 +3,20 @@ import './Card.scss';
 
 class Card extends React.Component {
     render() {
-        const { data } = this.props;
-        console.log(data);
+        const { item } = this.props;
         return (
             <div className="card">
-                <p>{data.name}</p>
+                <img src={item.sprites.front_default}></img>
+                <h3>{`id/${item.id}`}</h3>
+                <h2>{item.name}</h2>
+                <ul>
+                    {item.types.map(type => {
+                        return (
+                            <li className="itemList">{type.type.name}</li>
+                        );
+                    }
+                    )}
+                </ul>
             </div>
         );
     }
