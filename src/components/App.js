@@ -17,20 +17,34 @@ class App extends React.Component {
   }
   getPokemons() {
     fetchPokemon()
-    .then(data => {
-      this.setState({
-        data: data.results,
-        fetchOk: true,
+      .then(data => {
+        console.log('data del fetch 1', data.results);
+        // PARA HACER FETCH DE CADA URL QUE ME devuelve el array de objetos de data
+        return data.results.map(item => {
+          return (
+            fetch(item.url)
+              .then(response => response.json())
+              .then(dataAllPokemon => {
+                console.log('data del fetch 2', dataAllPokemon);
+                this.setState({
+                  data: dataAllPokemon,
+                  fetchOk: true,
+                })
+              })
+          );
+        });
       })
-    })
   }
   render() {
-    const {data} = this.state;
+    const { data, fetchOk } = this.state;
     return (
       <div className="App">
-          <Home
+        {fetchOk
+          ? (<Home
             data={data}
-          />
+          />)
+          : (<p>Loading ...</p>)
+        }
       </div>
     );
   }

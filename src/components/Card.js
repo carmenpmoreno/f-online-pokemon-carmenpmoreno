@@ -3,11 +3,11 @@ import './Card.scss';
 
 class Card extends React.Component {
     render() {
-        const {data} = this.props;
+        const { data } = this.props;
         console.log(data);
-        return(
+        return (
             <div className="card">
-                {data.map((item) => <div className="card"><p>{item.name}</p></div>)}
+                <p>{data.name}</p>
             </div>
         );
     }
