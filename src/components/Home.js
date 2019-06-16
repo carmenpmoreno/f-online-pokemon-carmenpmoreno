@@ -4,7 +4,7 @@ import List from './List';
 
 class Home extends React.Component {
     render() {
-        const { data, onInputChange, inputValue } = this.props;
+        const { data, onInputChange, inputValue, fetchOk} = this.props;
         return (
             <main>
                 <Filter
@@ -14,6 +14,7 @@ class Home extends React.Component {
                 <List
                     data={data}
                     inputValue={inputValue}
+                    fetchOk={fetchOk}
                 />
             </main>
 

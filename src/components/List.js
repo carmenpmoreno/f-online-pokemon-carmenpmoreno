@@ -3,26 +3,30 @@ import Card from './Card';
 import './List.scss';
 
 class List extends React.Component {
+
     render() {
-        const { data, inputValue } = this.props;
+        const { data, inputValue, fetchOk, getPokemons } = this.props;
         return (
             <ul>
-                {data
-                    .filter(item => {
-                        return (
-                            item.name.includes(inputValue)
-                        );
-                    }
-                    )
-                    .map(item => {
-                        return (
-                            <li className="itemList" key={item.id}>
-                                <Card
-                                    item={item}
-                                />
-                            </li>
-                        );
-                    })
+                {inputValue.length >= 3 & fetchOk
+                    ? (data
+                        .filter(item => {
+                            return (
+                                item.name.includes(inputValue)
+                            );
+                        }
+                        )
+                        .map(item => {
+                            return (
+                                <li className="itemList" key={item.id}>
+                                    <Card
+                                        item={item}
+                                    />
+                                </li>
+                            );
+                        }))
+                    : (<p>¡Elige tu pokemon favorito!</p>)
+
                 }
             </ul>
         );

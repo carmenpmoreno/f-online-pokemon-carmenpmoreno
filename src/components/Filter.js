@@ -3,7 +3,7 @@ import './Filter.scss';
 
 class Filter extends React.Component {
     render() {
-        const {onInputChange, inputValue} = this.props;
+        const { onInputChange, inputValue } = this.props;
         return (
             <fieldset>
                 <label className="labelFilter">Filtro por nombre</label>

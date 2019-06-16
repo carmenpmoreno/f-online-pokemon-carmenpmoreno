@@ -60,6 +60,7 @@ class App extends React.Component {
         {fetchOk
           ? (<Home
             data={data}
+            fetchOk={fetchOk}
             onInputChange={this.handleInputChange}
             inputValue={inputValue}
           />)
