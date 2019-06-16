@@ -6,7 +6,7 @@ class Card extends React.Component {
         const { item } = this.props;
         return (
             <div className="card">
-                <img src={item.sprites.front_default}></img>
+                <img src={item.sprites.front_default} alt={item.name}></img>
                 <h3 className="itemUpperCasse">{`id/${item.id}`}</h3>
                 <h2 className="pokemonName">{item.name}</h2>
                 <ul>

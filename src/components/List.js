@@ -5,7 +5,7 @@ import './List.scss';
 class List extends React.Component {
 
     render() {
-        const { data, inputValue, fetchOk, getPokemons } = this.props;
+        const { data, inputValue, fetchOk } = this.props;
         return (
             <ul>
                 {inputValue.length >= 3 & fetchOk
