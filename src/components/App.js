@@ -9,8 +9,10 @@ class App extends React.Component {
     this.state = {
       data: [],
       fetchOk: false,
+      inputValue: '',
     };
     this.getPokemons = this.getPokemons.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
   componentDidMount() {
     this.getPokemons();
@@ -18,8 +20,6 @@ class App extends React.Component {
   getPokemons() {
     fetchPokemon()
       .then(data => {
-        console.log('data del fetch 1', data.results);
-        // PARA HACER FETCH DE CADA URL QUE ME devuelve el array de objetos de data
         return data.results.map(item => {
           fetch(item.url)
             .then(response => response.json())
@@ -40,14 +40,28 @@ class App extends React.Component {
       })
 
   }
+
+  handleInputChange(event) {
+    const { value } = event.target;
+    console.log(value);
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        inputValue: value
+      };
+    });
+  }
+
   render() {
-    const { data, fetchOk } = this.state;
+    const { data, fetchOk, inputValue } = this.state;
     // console.log('data en el estado', data);
     return (
       <div className="App">
         {fetchOk
           ? (<Home
             data={data}
+            onInputChange={this.handleInputChange}
+            inputValue={inputValue}
           />)
           : (<p>Loading ...</p>)
         }
