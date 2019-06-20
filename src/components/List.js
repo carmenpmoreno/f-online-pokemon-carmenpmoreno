@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './Card';
 import './List.scss';
+import PropTypes from 'prop-types';
 
 class List extends React.Component {
 
@@ -32,6 +33,11 @@ class List extends React.Component {
             </ul>
         );
     }
+}
+
+List.propTypes = {
+    data: PropTypes.arrayOf(PropTypes.object),
+    inputValue: PropTypes.string,
 }
 
 export default List;

@@ -1,5 +1,6 @@
 import React from 'react';
 import './Filter.scss';
+import PropTypes from 'prop-types';
 
 class Filter extends React.Component {
     render() {
@@ -18,6 +19,11 @@ class Filter extends React.Component {
 
         );
     }
+}
+
+Filter.propTypes = {
+    onInputChange: PropTypes.func,
+    inputValue: PropTypes.string,
 }
 
 export default Filter;

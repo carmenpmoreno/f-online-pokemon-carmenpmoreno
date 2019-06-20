@@ -2,6 +2,7 @@ import React from 'react';
 import Filter from './Filter';
 import List from './List';
 import './Home.scss';
+import PropTypes from 'prop-types';
 
 class Home extends React.Component {
     render() {
@@ -21,6 +22,12 @@ class Home extends React.Component {
 
         );
     }
+}
+Home.propTypes = {
+    data: PropTypes.arrayOf(PropTypes.object),
+    onInputChange: PropTypes.func,
+    inputValue: PropTypes.string,
+    fetchOk: PropTypes.bool,
 }
 
 export default Home;
