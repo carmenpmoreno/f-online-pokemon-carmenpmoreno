@@ -5,14 +5,15 @@ import './List.scss';
 class List extends React.Component {
 
     render() {
-        const { data, inputValue, fetchOk } = this.props;
+        const { data, inputValue } = this.props;
         return (
             <ul className="pokemonList">
                 {inputValue.length >= 3 || inputValue === ""
                     ? (data
                         .filter(item => {
+                            const inputValueLowerCase = inputValue.toLowerCase();
                             return (
-                                item.name.includes(inputValue)
+                                item.name.includes(inputValueLowerCase)
                             );
                         }
                         )

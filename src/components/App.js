@@ -20,7 +20,7 @@ class App extends React.Component {
   getPokemons() {
     fetchPokemon()
       .then(data => {
-        return data.results.map(item => {
+        return data.results.forEach(item => {
           fetch(item.url)
             .then(response => response.json())
             .then(pokemonData => {
@@ -53,7 +53,6 @@ class App extends React.Component {
 
   render() {
     const { data, fetchOk, inputValue } = this.state;
-    // console.log('data en el estado', data);
     return (
       <div className="App">
         {fetchOk

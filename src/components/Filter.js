@@ -5,7 +5,7 @@ class Filter extends React.Component {
     render() {
         const { onInputChange, inputValue } = this.props;
         return (
-            <fieldset className="fieldsetContainer">
+            <form>
                 <label className="labelFilter">Filtro por nombre</label>
                 <input
                     type="text"
@@ -14,7 +14,7 @@ class Filter extends React.Component {
                     onChange={onInputChange}
                     value={inputValue}
                 />
-            </fieldset>
+            </form>
 
         );
     }
