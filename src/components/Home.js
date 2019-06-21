@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 class Home extends React.Component {
     render() {
-        const { data, onInputChange, inputValue, fetchOk} = this.props;
+        const { data, onInputChange, inputValue, evolutionData} = this.props;
         return (
             <main className="homePage">
                 <Filter
@@ -16,7 +16,7 @@ class Home extends React.Component {
                 <List
                     data={data}
                     inputValue={inputValue}
-                    fetchOk={fetchOk}
+                    evolutionData={evolutionData}
                 />
             </main>
 
@@ -28,6 +28,7 @@ Home.propTypes = {
     onInputChange: PropTypes.func,
     inputValue: PropTypes.string,
     fetchOk: PropTypes.bool,
+    evolutionData: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default Home;

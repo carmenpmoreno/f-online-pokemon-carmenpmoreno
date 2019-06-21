@@ -6,31 +6,44 @@ import PropTypes from 'prop-types';
 class List extends React.Component {
 
     render() {
-        const { data, inputValue } = this.props;
+        const { data, inputValue, evolutionData } = this.props;
         return (
-            <ul className="pokemonList">
-                {inputValue.length >= 3 || inputValue === ""
-                    ? (data
-                        .filter(item => {
-                            const inputValueLowerCase = inputValue.toLowerCase();
-                            return (
-                                item.name.includes(inputValueLowerCase)
-                            );
-                        }
+            <div>
+                <ul className="pokemonList">
+                    {inputValue.length >= 3 || inputValue === ""
+                        ? (data
+                            .filter(item => {
+                                const inputValueLowerCase = inputValue.toLowerCase();
+                                return (
+                                    item.name.includes(inputValueLowerCase)
+                                );
+                            }
+                            )
+                            .map(item => {
+                                return (
+                                    <li className="itemList" key={item.id}>
+                                        <Card
+                                            item={item}
+                                            evolutionData={evolutionData}
+                                        />
+                                    </li>
+                                );
+                            })
                         )
-                        .map(item => {
-                            return (
-                                <li className="itemList" key={item.id}>
-                                    <Card
-                                        item={item}
-                                    />
-                                </li>
-                            );
-                        }))
-                    : (<p className="chooseParagraph">¡Sigue buscando!</p>)
+                        : (<p className="chooseParagraph">¡Sigue buscando!</p>)
 
-                }
-            </ul>
+                    }
+                </ul>
+                {/* <ul>
+                    {evolutionData.chain.evolves_to.length > 0
+                        ? evolutionData.chain.evolves_to
+                            .map(item => {
+                                return evolution_details
+                            })
+                        : (<p>no hay datos de evolución</p>)
+                    }
+                </ul> */}
+            </div>
         );
     }
 }

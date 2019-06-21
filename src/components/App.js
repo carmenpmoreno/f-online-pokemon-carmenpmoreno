@@ -9,9 +9,10 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: [],
-      fetchOk: false,
+      fetchPokemonOk: false,
       inputValue: '',
       evolutionData: [],
+      fetchEvolutionOk: false,
     };
     this.getPokemons = this.getPokemons.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -34,7 +35,7 @@ class App extends React.Component {
                     data: [
                       ...prevState.data,
                       pokemonData],
-                    fetchOk: true,
+                    fetchPokemonOk: true,
                   }
                 })
               )
@@ -48,55 +49,56 @@ class App extends React.Component {
   getEvolution() {
     fetchEvolution()
       .then(data => {
-        console.log(data);
         return data.results.forEach(item => {
           fetch(item.url)
             .then(response => response.json())
             .then(data => {
-              console.log(data)
-              return (
-                this.setState(prevState => {
-                  return {
-                    evolutionData: [
-                      ...prevState.evolutionData,
-                      data],
-                  }
-                })
-              )
-            }
-            )
+                fetch(data.evolution_chain.url)
+                .then(response => response.json())
+                .then(data => {
+                  this.setState(prevState => {
+                    return {
+                      evolutionData: [
+                        ...prevState.evolutionData,
+                        data],
+                      fetchEvolutionOk: true
+                    }
+                  })
+              })
+            // }
+            // )
 
         });
-      });
-}
+      });})
+  }
 
+  handleInputChange(event) {
+    const { value } = event.target;
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        inputValue: value
+      };
+    });
+  }
 
-handleInputChange(event) {
-  const { value } = event.target;
-  this.setState(prevState => {
-    return {
-      ...prevState,
-      inputValue: value
-    };
-  });
-}
-
-render() {
-  const { data, fetchOk, inputValue } = this.state;
-  return (
-    <div className="App">
-      {fetchOk
-        ? (<Home
-          data={data}
-          fetchOk={fetchOk}
-          onInputChange={this.handleInputChange}
-          inputValue={inputValue}
-        />)
-        : (<p>Loading ...</p>)
-      }
-    </div>
-  );
-}
+  render() {
+    const { data, fetchPokemonOk, inputValue, evolutionData, fetchEvolutionOk } = this.state;
+    return (
+      <div className="App">
+        {fetchPokemonOk && fetchEvolutionOk
+          ? (<Home
+            data={data}
+            fetchPokemonOk={fetchPokemonOk}
+            evolutionData={evolutionData}
+            onInputChange={this.handleInputChange}
+            inputValue={inputValue}
+          />)
+          : (<p>Loading ...</p>)
+        }
+      </div>
+    );
+  }
 }
 
 export default App;
