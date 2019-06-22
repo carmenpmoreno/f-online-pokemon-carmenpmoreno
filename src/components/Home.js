@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 class Home extends React.Component {
     render() {
         const { data, onInputChange, inputValue } = this.props;
-
         return (
             <main className="homePage">
                 <Filter

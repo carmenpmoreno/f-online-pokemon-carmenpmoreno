@@ -8,34 +8,36 @@ class List extends React.Component {
     render() {
         const { data, inputValue } = this.props;
         return (
-            <div>
-                <ul className="pokemonList">
-                    {inputValue.length >= 3 || inputValue === ""
-                        ? (data
-                            .filter(item => {
-                                const inputValueLowerCase = inputValue.toLowerCase();
-                                return (
-                                    item.name.includes(inputValueLowerCase)
-                                );
-                            }
-                            )
-                            .map(item => {
-                                return (
-                                    <li className="itemList" key={item.id}>
-                                        <Card
-                                            item={item}
-                                            specie = {item.species_data}
-                                        />
-                                    </li>
-                                );
-                            })
+            <ul className="pokemonList">
+                {inputValue.length >= 3 || inputValue === ""
+                    ? (data
+                        .filter(item => {
+                            const inputValueLowerCase = inputValue.toLowerCase();
+                            return (
+                                item.name.includes(inputValueLowerCase)
+                            );
+                        }
                         )
-                        : (<p className="chooseParagraph">¡Sigue buscando!</p>)
+                        .map(item => {
+                            console.log(item.species_data);
+                            return (
+                                <li className="itemList" key={item.id}>
+                                    <Card
+                                        name={item.name}
+                                        image={item.sprites.front_default}
+                                        id={item.id}
+                                        types={item.types}
+                                        specie={item.species_data}
+                                    />
+                                </li>
+                            );
+                        })
+                    )
+                    : (<p className="chooseParagraph">¡Sigue buscando!</p>)
 
-                    }
-                    
-                </ul>
-            </div>
+                }
+
+            </ul>
         );
     }
 }
