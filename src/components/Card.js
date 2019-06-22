@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 
 class Card extends React.Component {
     render() {
-        const { item } = this.props;
+        const { item, specie } = this.props;
+        console.log(specie);
+        // const evolution = item.speciesData.evolves_from_species;
         return (
             <div className="card">
                 <img className="pokemonImage" src={item.sprites.front_default} alt={item.name}></img>
@@ -21,7 +23,14 @@ class Card extends React.Component {
                         )}
                     </ul>
                 </div>
-                
+                <div>
+                    {/* {evolution === undefined
+                        ? (console.log('este pokemon no tiene evolución'))
+                        : (<p>{item.speciesData.evolves_from_species.name}</p>)
+                    } */}
+                </div>
+
+
             </div>
         );
     }

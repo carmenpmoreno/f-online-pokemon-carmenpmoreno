@@ -24,6 +24,7 @@ class List extends React.Component {
                                     <li className="itemList" key={item.id}>
                                         <Card
                                             item={item}
+                                            specie = {item.species_data}
                                         />
                                     </li>
                                 );

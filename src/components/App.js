@@ -26,8 +26,9 @@ class App extends React.Component {
             .then(pokemonData => {
               fetch(pokemonData.species.url)
               .then(response => response.json())
+              // añado los datos de species, donde viene la evolucion del pokemon, a pokemondata
               .then(speciesData => {
-                pokemonData.speciesData = speciesData
+                pokemonData.species_data = speciesData
               })
               return (
                 this.setState(prevState => {
@@ -57,13 +58,12 @@ class App extends React.Component {
   }
 
   render() {
-    const { data, fetchPokemonOk, inputValue, speciesData } = this.state;
+    const { data, fetchPokemonOk, inputValue } = this.state;
     return (
       <div className="App">
         {fetchPokemonOk 
           ? (<Home
             data={data}
-            speciesData={speciesData}
             onInputChange={this.handleInputChange}
             inputValue={inputValue}
           />)
