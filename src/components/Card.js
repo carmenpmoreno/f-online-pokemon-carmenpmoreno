@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 class Card extends React.Component {
     render() {
-        const { item, evolutionData } = this.props;
+        const { item } = this.props;
         return (
             <div className="card">
                 <img className="pokemonImage" src={item.sprites.front_default} alt={item.name}></img>
@@ -21,6 +21,7 @@ class Card extends React.Component {
                         )}
                     </ul>
                 </div>
+                
             </div>
         );
     }

@@ -2,7 +2,6 @@ import React from 'react';
 import './App.scss';
 import Home from './Home';
 import fetchPokemon from '../services/fetchPokemon';
-import fetchEvolution from '../services/fetchEvolution';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,16 +10,12 @@ class App extends React.Component {
       data: [],
       fetchPokemonOk: false,
       inputValue: '',
-      evolutionData: [],
-      fetchEvolutionOk: false,
     };
     this.getPokemons = this.getPokemons.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.getEvolution = this.getEvolution.bind(this);
   }
   componentDidMount() {
     this.getPokemons();
-    this.getEvolution();
   }
   getPokemons() {
     fetchPokemon()
@@ -29,6 +24,11 @@ class App extends React.Component {
           fetch(item.url)
             .then(response => response.json())
             .then(pokemonData => {
+              fetch(pokemonData.species.url)
+              .then(response => response.json())
+              .then(speciesData => {
+                pokemonData.speciesData = speciesData
+              })
               return (
                 this.setState(prevState => {
                   return {
@@ -46,32 +46,6 @@ class App extends React.Component {
 
   }
 
-  getEvolution() {
-    fetchEvolution()
-      .then(data => {
-        return data.results.forEach(item => {
-          fetch(item.url)
-            .then(response => response.json())
-            .then(data => {
-                fetch(data.evolution_chain.url)
-                .then(response => response.json())
-                .then(data => {
-                  this.setState(prevState => {
-                    return {
-                      evolutionData: [
-                        ...prevState.evolutionData,
-                        data],
-                      fetchEvolutionOk: true
-                    }
-                  })
-              })
-            // }
-            // )
-
-        });
-      });})
-  }
-
   handleInputChange(event) {
     const { value } = event.target;
     this.setState(prevState => {
@@ -83,14 +57,13 @@ class App extends React.Component {
   }
 
   render() {
-    const { data, fetchPokemonOk, inputValue, evolutionData, fetchEvolutionOk } = this.state;
+    const { data, fetchPokemonOk, inputValue, speciesData } = this.state;
     return (
       <div className="App">
-        {fetchPokemonOk && fetchEvolutionOk
+        {fetchPokemonOk 
           ? (<Home
             data={data}
-            fetchPokemonOk={fetchPokemonOk}
-            evolutionData={evolutionData}
+            speciesData={speciesData}
             onInputChange={this.handleInputChange}
             inputValue={inputValue}
           />)

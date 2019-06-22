@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 
 class Home extends React.Component {
     render() {
-        const { data, onInputChange, inputValue, evolutionData} = this.props;
+        const { data, onInputChange, inputValue } = this.props;
+
         return (
             <main className="homePage">
                 <Filter
@@ -16,7 +17,6 @@ class Home extends React.Component {
                 <List
                     data={data}
                     inputValue={inputValue}
-                    evolutionData={evolutionData}
                 />
             </main>
 

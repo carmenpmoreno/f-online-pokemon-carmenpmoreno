@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 class List extends React.Component {
 
     render() {
-        const { data, inputValue, evolutionData } = this.props;
+        const { data, inputValue } = this.props;
         return (
             <div>
                 <ul className="pokemonList">
@@ -24,7 +24,6 @@ class List extends React.Component {
                                     <li className="itemList" key={item.id}>
                                         <Card
                                             item={item}
-                                            evolutionData={evolutionData}
                                         />
                                     </li>
                                 );
@@ -33,16 +32,8 @@ class List extends React.Component {
                         : (<p className="chooseParagraph">¡Sigue buscando!</p>)
 
                     }
+                    
                 </ul>
-                {/* <ul>
-                    {evolutionData.chain.evolves_to.length > 0
-                        ? evolutionData.chain.evolves_to
-                            .map(item => {
-                                return evolution_details
-                            })
-                        : (<p>no hay datos de evolución</p>)
-                    }
-                </ul> */}
             </div>
         );
     }
