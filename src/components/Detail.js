@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Detail.scss';
 // import fetchEvolution from '../services/fetchEvolution';
+import { Link } from 'react-router-dom';
+import { Fragment } from 'react';
 
 class Detail extends React.Component {
 
@@ -13,35 +15,42 @@ class Detail extends React.Component {
         const image = item.sprites.front_default;
 
         return (
-            <main>
-                <h1>{name}</h1>
-                <h2>Perfil</h2>
-                <ul className="profileList">
-                    <li className="profileList__item">{`altura: ${height}`}</li>
-                    <li className="profileList__item">{`peso: ${weight}`}</li>
-                    <li className="profileList__item">
-                        Habilidades
+            <Fragment>
+                <header>
+                    <nav>
+                        <button><Link to="/">Volver</Link></button>
+                    </nav>
+                </header>
+                <main>
+                    <h1>{name}</h1>
+                    <h2>Perfil</h2>
+                    <ul className="profileList">
+                        <li className="profileList__item">{`altura: ${height}`}</li>
+                        <li className="profileList__item">{`peso: ${weight}`}</li>
+                        <li className="profileList__item">
+                            Habilidades
                         <ul className="profileList__abilitiesList">
-                            {abilities.map(item => {
-                                return (<li key={item.slot}>{item.ability.name}</li>);
-                            })}
-                        </ul>
-                    </li>
-                    <li className="profileList__item">
-                        <ul>
-                            <li>
-                                <img className="pokemonImage" src={image} alt={name}></img>
-                            </li>
-                            <li>
-                                {/* {fetchEvolution(id)
+                                {abilities.map(item => {
+                                    return (<li key={item.slot}>{item.ability.name}</li>);
+                                })}
+                            </ul>
+                        </li>
+                        <li className="profileList__item">
+                            <ul>
+                                <li>
+                                    <img className="pokemonImage" src={image} alt={name}></img>
+                                </li>
+                                <li>
+                                    {/* {fetchEvolution(id)
                                 ?(console.log('tenemos fetchEvolution'))
                                 :(console.log('NO tenemos fetchEvolution'))
                                 } */}
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </main>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </main>
+            </Fragment>
         );
     }
 }
