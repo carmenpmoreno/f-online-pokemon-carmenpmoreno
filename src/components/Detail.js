@@ -17,7 +17,7 @@ class Detail extends React.Component {
             <div className="detailContainer">
                 <header>
                     <nav className="navContainer">
-                        <button className="backButton"><Link to="/">volver</Link></button>
+                        <button className="backButton"><Link className="backButton__link" to="/">volver</Link></button>
                     </nav>
                 </header>
                 <main className="mainCard">

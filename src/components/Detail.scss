@@ -9,6 +9,17 @@
 }
 .backButton {
     text-transform: capitalize;
+    background-color: #fff;
+    border: #fff;
+    font-size: 16px;
+    padding: 10px;
+}
+.backButton__link {
+    text-decoration: none;
+    color: grey;
+    &:hover {
+        color: grey;
+    }
 }
 .mainCard {
     width: 280px;
