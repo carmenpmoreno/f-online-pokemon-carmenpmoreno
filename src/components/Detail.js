@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import './Detail.scss';
 // import fetchEvolution from '../services/fetchEvolution';
 import { Link } from 'react-router-dom';
-import { Fragment } from 'react';
 
 class Detail extends React.Component {
 
@@ -15,15 +14,15 @@ class Detail extends React.Component {
         const image = item.sprites.front_default;
 
         return (
-            <Fragment>
+            <div className="detailContainer">
                 <header>
-                    <nav>
-                        <button><Link to="/">Volver</Link></button>
+                    <nav className="navContainer">
+                        <button className="backButton"><Link to="/">volver</Link></button>
                     </nav>
                 </header>
-                <main>
-                    <h1>{name}</h1>
-                    <h2>Perfil</h2>
+                <main className="mainCard">
+                    <h1 className="mainCard__title">{name}</h1>
+                    <h2 className="mainCard__profileTitle">Perfil</h2>
                     <ul className="profileList">
                         <li className="profileList__item">{`altura: ${height}`}</li>
                         <li className="profileList__item">{`peso: ${weight}`}</li>
@@ -31,26 +30,26 @@ class Detail extends React.Component {
                             Habilidades
                         <ul className="profileList__abilitiesList">
                                 {abilities.map(item => {
-                                    return (<li key={item.slot}>{item.ability.name}</li>);
+                                    return (<li className="abilitiesList__item" key={item.slot}>{`${item.ability.name},`}</li>);
                                 })}
                             </ul>
                         </li>
                         <li className="profileList__item">
-                            <ul>
-                                <li>
+                            <ul className="imagesList">
+                                <li className="imagesList__item">
                                     <img className="pokemonImage" src={image} alt={name}></img>
                                 </li>
-                                <li>
+                                {/* <li>
                                     {/* {fetchEvolution(id)
                                 ?(console.log('tenemos fetchEvolution'))
                                 :(console.log('NO tenemos fetchEvolution'))
                                 } */}
-                                </li>
+                                {/* </li> */} 
                             </ul>
                         </li>
                     </ul>
                 </main>
-            </Fragment>
+            </div>
         );
     }
 }
