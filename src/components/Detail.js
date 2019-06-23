@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Detail.scss';
+// import fetchEvolution from '../services/fetchEvolution';
 
 class Detail extends React.Component {
+
     render() {
         const { data } = this.props;
         const { pokemonId } = this.props.match.params;
         const item = data[pokemonId - 1];
-        const { name, height, weight, abilities, } = item;
+        const { name, height, weight, abilities, id } = item;
         const image = item.sprites.front_default;
-        console.log(name);
 
         return (
             <main>
@@ -22,7 +23,7 @@ class Detail extends React.Component {
                         Habilidades
                         <ul className="profileList__abilitiesList">
                             {abilities.map(item => {
-                                return (<li>{item.ability.name}</li>);
+                                return (<li key={item.slot}>{item.ability.name}</li>);
                             })}
                         </ul>
                     </li>
@@ -30,6 +31,12 @@ class Detail extends React.Component {
                         <ul>
                             <li>
                                 <img className="pokemonImage" src={image} alt={name}></img>
+                            </li>
+                            <li>
+                                {/* {fetchEvolution(id)
+                                ?(console.log('tenemos fetchEvolution'))
+                                :(console.log('NO tenemos fetchEvolution'))
+                                } */}
                             </li>
                         </ul>
                     </li>
