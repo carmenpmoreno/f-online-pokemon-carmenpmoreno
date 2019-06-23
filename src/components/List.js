@@ -19,18 +19,17 @@ class List extends React.Component {
                         }
                         )
                         .map(item => {
-                            // console.log(item.species_data);
-                            return (
-                                <li className="itemList" key={item.id}>
-                                    <Card
-                                        name={item.name}
-                                        image={item.sprites.front_default}
-                                        id={item.id}
-                                        types={item.types}
-                                        // specie={item.species_data}
-                                    />
-                                </li>
-                            );
+                            return (<li className="itemList" key={item.id}>
+                                <Card
+                                    name={item.name}
+                                    image={item.sprites.front_default}
+                                    id={item.id}
+                                    types={item.types}
+                                    specie={item.species_data}
+                                    base_experience = {item.base_experience}
+                                />
+                            </li>);
+
                         })
                     )
                     : (<p className="chooseParagraph">¡Sigue buscando!</p>)

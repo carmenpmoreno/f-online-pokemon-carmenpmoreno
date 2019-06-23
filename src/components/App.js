@@ -13,7 +13,6 @@ class App extends React.Component {
     };
     this.getPokemons = this.getPokemons.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    // this.getSpecies = this.getSpecies.bind(this);
   }
   componentDidMount() {
     this.getPokemons();
@@ -22,8 +21,9 @@ class App extends React.Component {
     if (this.state.data.length === 24) {
       console.log('data ya está relleno');
       this.getSpecies();
-    } else { console.log('no se ejecuta la función') }
+    }
   }
+
   getPokemons() {
     fetchPokemon()
       .then(data => {
@@ -31,14 +31,7 @@ class App extends React.Component {
           fetch(item.url)
             .then(response => response.json())
             .then(pokemonData => {
-              // fetch(pokemonData.species.url)
-              // .then(response => response.json())
-              // // añado los datos de species, donde viene la evolucion del pokemon, a pokemondata
-              // .then(speciesData => {
-              //   pokemonData.species_data = {
-              //     pokemonSpecie: speciesData
-              //   }
-              // })
+              // to set pokemonData on state.data
               return (
                 this.setState(prevState => {
                   return {
@@ -58,16 +51,12 @@ class App extends React.Component {
 
   getSpecies() {
     if (this.state.data.length === 24) {
-      // const speciesUrl = this.state.data.map(item => {
-      //   return (item.species.url);
-      // });
-      // console.log(speciesUrl);
       this.state.data.map(item => {
         const speciesUrl =item.species.url;
         fetch(speciesUrl)
         .then(response => response.json())
-        // añado los datos de species, donde viene la evolucion del pokemon, a pokemondata
         .then(speciesData => {
+          // to add speciesData on data (item.species_data.pokemonSpecie)
         item.species_data = {
         pokemonSpecie: speciesData
         }
