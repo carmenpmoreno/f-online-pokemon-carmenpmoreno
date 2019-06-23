@@ -19,7 +19,7 @@ class List extends React.Component {
                         }
                         )
                         .map(item => {
-                            console.log(item.species_data);
+                            // console.log(item.species_data);
                             return (
                                 <li className="itemList" key={item.id}>
                                     <Card
@@ -27,7 +27,7 @@ class List extends React.Component {
                                         image={item.sprites.front_default}
                                         id={item.id}
                                         types={item.types}
-                                        specie={item.species_data}
+                                        // specie={item.species_data}
                                     />
                                 </li>
                             );
