@@ -32,7 +32,7 @@ class List extends React.Component {
                         .map(item => {
                             return (
                                 <li className="itemList" key={item.id} id={item.id}>
-                                    <Link to={`/pokemon-detail/${item.id}`}>
+                                    <Link className="itemList__link" to={`/pokemon-detail/${item.id}`}>
                                         <Card
                                             name={item.name}
                                             image={item.sprites.front_default}
