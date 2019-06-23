@@ -26,7 +26,6 @@ class List extends React.Component {
                                     id={item.id}
                                     types={item.types}
                                     specie={item.species_data}
-                                    base_experience = {item.base_experience}
                                 />
                             </li>);
 

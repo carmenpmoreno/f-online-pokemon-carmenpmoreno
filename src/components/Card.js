@@ -11,9 +11,11 @@ class Card extends React.Component {
         // console.log(specie);
         return (
             <div className="card">
-                <img className="pokemonImage" src={image} alt={name}></img>
-                <h3 className="itemUpperCasse pokemonId">{`id/${id}`}</h3>
-                <div className="nameTypesWrapper">
+                <div className="card-up">
+                    <img className="pokemonImage" src={image} alt={name}></img>
+                    <h3 className="itemUpperCasse pokemonId">{`id/${id}`}</h3>
+                </div>
+                <div className="card-down">
                     <h2 className="pokemonName">{name}</h2>
                     <ul className="pokemonTypes">
                         {types.map(type => {
@@ -23,15 +25,13 @@ class Card extends React.Component {
                         }
                         )}
                     </ul>
+                    <div>
+                        {!specie || specie.pokemonSpecie.evolves_from_species === null
+                            ? (console.log('este pokemon no tiene evolucion o no hay datos de especie'))
+                            : (<p className="evolution">{`Evoluciona de: ${specie.pokemonSpecie.evolves_from_species.name}`}</p>)
+                        }
+                    </div>
                 </div>
-                <div>
-                    {!specie || specie.pokemonSpecie.evolves_from_species === null
-                        ? (console.log('este pokemon no tiene evolución'))
-                        : (<p>{specie.pokemonSpecie.evolves_from_species.name}</p>)
-                    }
-                </div>
-
-
             </div>
         );
     }
