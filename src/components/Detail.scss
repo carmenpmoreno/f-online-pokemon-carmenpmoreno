@@ -41,8 +41,10 @@
 .profileList {
     list-style: none;
     text-align: left;
-    text-transform: capitalize;
-    
+    width: 220px;
+    .profileList__item {
+        padding: 3px;
+    } 
 }
 .profileList__abilitiesList {
     list-style: none;
@@ -55,10 +57,16 @@
 }
 .imagesList {
     padding: 0;
+    list-style: none;
 }
 .imagesList__item {
     list-style: none;
 }
 .pokemonImage {
     padding: 0;
+}
+.evolutionsNames {
+    padding-bottom: 15px;
+    padding-left: 0;
+    list-style: none;
 }
