@@ -28,7 +28,7 @@ class Card extends React.Component {
                     <div>
                         {!specie || specie.pokemonSpecie.evolves_from_species === null
                             ? (console.log('este pokemon no tiene evolucion o no hay datos de especie'))
-                            : (<p className="evolution">{`Evoluciona de: ${specie.pokemonSpecie.evolves_from_species.name}`}</p>)
+                            : (<p className="evolution">{`Evoluciona de ${specie.pokemonSpecie.evolves_from_species.name}`}</p>)
                         }
                     </div>
                 </div>

@@ -12,6 +12,9 @@ class Detail extends React.Component {
         const item = data[pokemonId - 1];
         const { name, height, weight, abilities, id } = item;
         const image = item.sprites.front_default;
+        const frstEvolName = item.species_data.evolution_data.chain.species.name;
+        const scndEvolName = item.species_data.evolution_data.chain.evolves_to[0].species.name;
+        const thrdEvolName = item.species_data.evolution_data.chain.evolves_to[0].evolves_to[0].species.name;
 
         return (
             <div className="detailContainer">
@@ -27,24 +30,32 @@ class Detail extends React.Component {
                         <li className="profileList__item">{`altura: ${height}`}</li>
                         <li className="profileList__item">{`peso: ${weight}`}</li>
                         <li className="profileList__item">
-                            Habilidades
+                            Habilidades: 
                         <ul className="profileList__abilitiesList">
                                 {abilities.map(item => {
                                     return (<li className="abilitiesList__item" key={item.slot}>{`${item.ability.name},`}</li>);
                                 })}
                             </ul>
                         </li>
-                        <li className="profileList__item">
+                        <li className="profileList__images">
                             <ul className="imagesList">
                                 <li className="imagesList__item">
                                     <img className="pokemonImage" src={image} alt={name}></img>
                                 </li>
-                                {/* <li>
-                                    {/* {fetchEvolution(id)
-                                ?(console.log('tenemos fetchEvolution'))
-                                :(console.log('NO tenemos fetchEvolution'))
-                                } */}
-                                {/* </li> */} 
+                                <ul className="evolutionsNames">
+                                    {!item.species_data || item.species_data.pokemonSpecie.evolves_from_species === null
+                                        ? (console.log('este pokemon no tiene evolucion o no hay datos de especie'))
+                                        : (<li className="profileList__item"> {`Evoluciona de ${item.species_data.pokemonSpecie.evolves_from_species.name}`}</li>)
+                                    }
+                                    {(frstEvolName === name)
+                                        ? (<li className="profileList__item"> {`Evoluciona a ${scndEvolName}`}</li>)
+                                        : " "
+                                    }
+                                    {(scndEvolName === name)
+                                        ? (<li className="profileList__item"> {`Evoluciona a ${thrdEvolName}`}</li>)
+                                        : " "
+                                    }
+                                </ul>
                             </ul>
                         </li>
                     </ul>

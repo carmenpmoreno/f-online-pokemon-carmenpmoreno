@@ -23,106 +23,100 @@ class App extends React.Component {
     if (this.state.data.length === 24) {
       console.log('data ya está relleno');
       this.getSpecies();
-      // this.getEvolutionImage();
+    } else {
+      console.log('data aún no está relleno')
     }
   }
-  // getEvolutionImage() {
-  //   // console.log('getEvolutionData');
-  //   const evolutionUrl = this.state.data.map(item => item.species_data.pokemonSpecie.evolution_chain.url)
-  //   fetch(evolutionUrl)
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     console.log(data)
-  //   })
-  // }
 
+  getPokemons() {
+    fetchPokemon()
+      .then(data => {
+        return data.results.forEach(item => {
+          fetch(item.url)
+            .then(response => response.json())
+            .then(pokemonData => {
+              // to set pokemonData on state.data
+              return (
+                this.setState(prevState => {
+                  return {
+                    data: [
+                      ...prevState.data,
+                      pokemonData],
+                    fetchPokemonOk: true,
+                  }
+                })
+              )
 
-getPokemons() {
-  fetchPokemon()
-    .then(data => {
-      return data.results.forEach(item => {
-        fetch(item.url)
-          .then(response => response.json())
-          .then(pokemonData => {
-            // to set pokemonData on state.data
-            return (
-              this.setState(prevState => {
-                return {
-                  data: [
-                    ...prevState.data,
-                    pokemonData],
-                  fetchPokemonOk: true,
-                }
-              })
-            )
+            })
+        });
+      })
 
-          })
-      });
-    })
+  }
 
-}
-
-getSpecies() {
-  if (this.state.data.length === 24) {
+  getSpecies() {
     this.state.data.map(item => {
       const speciesUrl = item.species.url;
       fetch(speciesUrl)
         .then(response => response.json())
         .then(speciesData => {
-          // to add speciesData on data (item.species_data.pokemonSpecie)
-          item.species_data = {
-            pokemonSpecie: speciesData
-          }
-        })
+          const evolutionChainUrl = speciesData.evolution_chain.url;
+
+          fetch(evolutionChainUrl)
+            .then(response => response.json())
+            .then(evolutionData => {
+              // // to add species and evolutionData on data
+              item.species_data = {
+                pokemonSpecie: speciesData,
+                evolution_data: evolutionData
+              }
+            })
+        });
+    })
+  } 
+
+  handleInputChange(event) {
+    const { value } = event.target;
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        inputValue: value
+      };
     });
-  } else {
-    console.log('no hay info en data aún');
+  }
+
+  render() {
+    const { data, fetchPokemonOk, inputValue } = this.state;
+    return (
+      <div className="App">
+        {fetchPokemonOk
+          ? (<Switch>
+            <Route
+              exact path="/"
+              render={() => (
+                <Home
+                  data={data}
+                  onInputChange={this.handleInputChange}
+                  inputValue={inputValue}
+                />
+              )}
+            />
+            <Route
+              path="/pokemon-detail/:pokemonId"
+              // component={Detail}
+              render={routerProps =>
+                <Detail
+                  match={routerProps.match}
+                  data={data}
+                />
+              }
+            />
+          </Switch>
+          )
+          : (<p>Loading ...</p>)
+        }
+      </div>
+    );
   }
 }
-
-handleInputChange(event) {
-  const { value } = event.target;
-  this.setState(prevState => {
-    return {
-      ...prevState,
-      inputValue: value
-    };
-  });
-}
-
-render() {
-  const { data, fetchPokemonOk, inputValue } = this.state;
-  return (
-    <div className="App">
-      {fetchPokemonOk
-        ? (<Switch>
-          <Route
-            exact path="/"
-            render={() => (
-              <Home
-                data={data}
-                onInputChange={this.handleInputChange}
-                inputValue={inputValue}
-              />
-            )}
-          />
-          <Route
-            path="/pokemon-detail/:pokemonId"
-            // component={Detail}
-            render={routerProps =>
-              <Detail
-                match={routerProps.match}
-                data={data}
-              />
-            }
-          />
-        </Switch>
-        )
-        : (<p>Loading ...</p>)
-      }
-    </div>
-  );
-}
-      }
 
 export default App;
