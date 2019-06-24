@@ -40,7 +40,7 @@ class Detail extends React.Component {
                         <li className="profileList__images">
                             <ul className="imagesList">
                                 <li className="imagesList__item">
-                                    <img className="pokemonImage" src={image} alt={name}></img>
+                                    <img className="profileList__pokemonImage" src={image} alt={name}></img>
                                 </li>
                                 <ul className="evolutionsNames">
                                     {!item.species_data || item.species_data.pokemonSpecie.evolves_from_species === null
