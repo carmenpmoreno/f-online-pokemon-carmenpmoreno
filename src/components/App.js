@@ -1,9 +1,9 @@
-import React from "react";
-import "./App.scss";
-import Home from "./Home";
-import fetchPokemon from "../services/fetchPokemon";
-import { Route, Switch } from "react-router-dom";
-import Detail from "./Detail";
+import React from 'react';
+import './App.scss';
+import Home from './Home';
+import fetchPokemon from '../services/fetchPokemon';
+import { Route, Switch } from 'react-router-dom';
+import Detail from './Detail';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,13 +11,12 @@ class App extends React.Component {
     this.state = {
       data: [],
       fetchPokemonOk: false,
-      inputValue: ""
+      inputValue: '',
     };
     this.getPokemons = this.getPokemons.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
   componentDidMount() {
-    console.log("componentDidMount");
     this.getPokemons();
   }
 
@@ -40,14 +39,14 @@ class App extends React.Component {
                     // // to add species and evolutionData on json "pokemondata"
                     pokemonData.species_data = {
                       pokemonSpecie: speciesData,
-                      evolution_data: evolutionData
+                      evolution_data: evolutionData,
                     };
 
                     // to set pokemonData on state.data
                     return this.setState(prevState => {
                       return {
                         data: [...prevState.data, pokemonData],
-                        fetchPokemonOk: true
+                        fetchPokemonOk: true,
                       };
                     });
                   });
@@ -62,14 +61,13 @@ class App extends React.Component {
     this.setState(prevState => {
       return {
         ...prevState,
-        inputValue: value
+        inputValue: value,
       };
     });
   }
 
   render() {
     const { data, fetchPokemonOk, inputValue } = this.state;
-    console.log("--> render");
     return (
       <div className="App">
         {fetchPokemonOk ? (

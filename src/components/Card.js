@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 class Card extends React.Component {
   render() {
     const { name, image, id, types, specie } = this.props;
-    // console.log(specie);
     return (
       <div className="card">
         <div className="card-up">
@@ -25,9 +24,7 @@ class Card extends React.Component {
           </ul>
           <div>
             {!specie || specie.pokemonSpecie.evolves_from_species === null ? (
-              console.log(
-                "este pokemon no tiene evolucion o no hay datos de especie"
-              )
+              <p className="evolution"></p>
             ) : (
               <p className="evolution">{`Evoluciona de ${specie.pokemonSpecie.evolves_from_species.name}`}</p>
             )}
